@@ -8,6 +8,7 @@
       margin: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: #000;
@@ -21,19 +22,42 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: rainbow 5s linear infinite;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    @keyframes rainbow {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
+    h1:hover {
+      transform: scale(1.1);
+    }
+
+    #legend-text {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-family: Arial, sans-serif;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    #legend-text.visible {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <h1>Богдан Гей</h1>
+  <h1 onclick="playSound()">Богдан Гей</h1>
+  <div id="legend-text">100% Богдан 200% Гей 300% Легенда</div>
+
+  <audio id="sound" src="Fisting is 300 bucks.mp3"></audio>
+
+  <script>
+    function playSound() {
+      const audio = document.getElementById('sound');
+      const text = document.getElementById('legend-text');
+      audio.currentTime = 0;
+      audio.play();
+      text.classList.add('visible');
+    }
+  </script>
 </body>
 </html>
